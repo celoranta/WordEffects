@@ -3,7 +3,7 @@
 //  WordEffects
 //
 //  Created by KevinT on 2018-02-12.
-//  Copyright © 2018 KevinT. All rights reserved.
+//  Copyright © 2018 Kevin T., Chris E, Tyson P. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -25,25 +25,49 @@ int main(int argc, const char * argv[]) {
       fgets(inputChars, 255, stdin);
       
       NSString *inputString = [[NSString alloc] initWithCString:inputChars encoding:NSUTF8StringEncoding];
-      
+      inputString = [inputString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        NSLog(@"You entered the string %s.", inputChars);
       if (inputNumber[0] == '1') {
-        NSLog(@"You entered the number 1 and string %s.", inputChars);
+        inputString = [inputString uppercaseString];
+      NSLog(@"the string is %@",inputString);
+      
       } else if (inputNumber[0] == '2') {
-        NSLog(@"You entered the number 2 and string %s.", inputChars);
+        inputString = [inputString lowercaseString];
+      NSLog(@"The string is %@",inputString);
+      
       } else if (inputNumber[0] == '3') {
-        NSLog(@"You entered the number 3 and string %s.", inputChars);
+      NSLog(@"The string is %lu",(unsigned long)[inputString integerValue]);
+
       } else if (inputNumber[0] == '4') {
-        NSLog(@"You entered the number 4 and string %s.", inputChars);
+      NSLog(@"The string is %@",inputString);
+        inputString = [inputString stringByAppendingString:@", eh?"];
+        
+
       } else if (inputNumber[0] == '5') {
-        NSLog(@"You entered the number 5 and string %s.", inputChars);
-      } else if (inputNumber[0] == '6') {
-        NSLog(@"You entered the number 6 and string %s.", inputChars);
+        NSLog(@"The string is %@",inputString);
+
+          if([inputString hasSuffix:@"?"]){
+
+          NSLog(@"I don't know.");
+          }
+        else if([inputString hasSuffix:@"!"]){
+          NSLog(@"Whoa, calm down!");
+        }
+
+        }
+      else if (inputNumber[0] == '6') {
+        inputString = [inputString stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+      NSLog(@"The string is %@",inputString);
+      
       } else {
         NSLog(@"enter a number 1-6");
       }
+      
       // Log the memory address of inputString
 
       NSLog(@"The string address is %p",inputString);
+      NSLog(@"Your string has been changed to %@",inputString);
+
       
       // print as a c string
       //printf("Your string is %s\n", inputChars);
@@ -51,10 +75,12 @@ int main(int argc, const char * argv[]) {
       // convert char array to an NSString object
       //NSString *inputString = [NSString stringWithUTF8String:inputChars];
       
-      // print NSString object
-      NSLog(@"Input was: %@", inputString);
+
     }
     
   }
   return 0;
 }
+
+
+
