@@ -41,7 +41,9 @@ int main(int argc, const char * argv[]) {
       } else {
         NSLog(@"enter a number 1-6");
       }
-      
+      // Log the memory address of inputString
+
+      NSLog(@"The string address is %p",inputString);
       
       // print as a c string
       //printf("Your string is %s\n", inputChars);
