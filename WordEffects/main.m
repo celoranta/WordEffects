@@ -14,7 +14,7 @@ int main(int argc, const char * argv[]) {
       
       char inputNumber[255];
       
-      printf("Input a number 1-6: ");
+      printf("Input a number 1-7: ");
       
       fgets(inputNumber, 255, stdin);
       
@@ -58,9 +58,44 @@ int main(int argc, const char * argv[]) {
       else if (inputNumber[0] == '6') {
         inputString = [inputString stringByReplacingOccurrencesOfString:@" " withString:@"-"];
       NSLog(@"The string is %@",inputString);
+      }
+      else if (inputNumber[0] == '7') {
+
+          // set first index to point at first letter
+          NSInteger firstIndex = 0;
+          
+          //set second index to point at last letter
+          NSUInteger secondIndex = [inputString length]-1;
+          
+          //create a mutable version of the input string
+          NSMutableString *mutatingString = [NSMutableString stringWithString:inputString];
+          
+          while (firstIndex < secondIndex)
+          {
+              // create a range for each of the character strings to be swapped
+              NSRange indexOneRange = NSMakeRange(firstIndex, 1);
+              NSRange indexTwoRange = NSMakeRange(secondIndex, 1);
+              
+              //create a string from each of the character strings to be swapped
+              NSString * indexOneString = [inputString substringWithRange:indexOneRange];
+              NSString * indexTwoString = [inputString substringWithRange:indexTwoRange];
+              
+              // swap the character strings within a mutatable version of the input string
+              [mutatingString replaceCharactersInRange:indexOneRange withString:indexTwoString];
+              [mutatingString replaceCharactersInRange:indexTwoRange withString:indexOneString];
+              
+              //move indexes toward center of string by one character
+              firstIndex++;
+              secondIndex--;
+          }
+          
+          //set 'input string' to the mutated version
+          inputString = [inputString stringByReplacingOccurrencesOfString:inputString withString:mutatingString];
+      }
       
-      } else {
-        NSLog(@"enter a number 1-6");
+      
+      else {
+        NSLog(@"enter a number 1-7");
       }
       
       // Log the memory address of inputString
